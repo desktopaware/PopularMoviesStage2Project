@@ -3,15 +3,19 @@ package android.example.popularmoviesstage1project;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Movie implements Parcelable {
-    //title, release date, movie poster, vote average, and plot synopsis
-    String title, releaseDate, moviePoster, voteAverage, plotSynopsis;
 
-    public Movie(){
+    @PrimaryKey
+    private int id;
+    private String title, releaseDate, moviePoster, voteAverage, plotSynopsis;
 
-    }
-
-    public Movie(String title, String releaseDate, String moviePoster, String voteAverage, String plotSynopsis) {
+    public Movie(int id, String title, String releaseDate, String moviePoster, String voteAverage, String plotSynopsis) {
+        this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
         this.moviePoster = moviePoster;
@@ -20,6 +24,7 @@ public class Movie implements Parcelable {
     }
 
     protected Movie(Parcel in) {
+        id = in.readInt();
         title = in.readString();
         releaseDate = in.readString();
         moviePoster = in.readString();
@@ -38,6 +43,14 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -86,6 +99,7 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
         parcel.writeString(title);
         parcel.writeString(releaseDate);
         parcel.writeString(moviePoster);

@@ -2,8 +2,8 @@ package android.example.popularmoviesstage1project;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +14,12 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ItemViewHolder> {
-    List<Movie> mMovie;
-    Context mContext;
+    List<Movie> movie;
+    Context context;
 
     public MovieAdapter(Context context, List<Movie> movie){
-        this.mContext = context;
-        this.mMovie = movie;
+        this.context = context;
+        this.movie = movie;
     }
 
     @NonNull
@@ -33,16 +33,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ItemViewHold
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, final int i) {
         Picasso.get()
-                .load(mMovie.get(i).getMoviePoster())
+                .load(movie.get(i).getMoviePoster())
                 .into(itemViewHolder.imageView);
 
         itemViewHolder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, MovieInformation.class);
+                Intent intent = new Intent(context, MovieInformation.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("movie", mMovie.get(i));
-                mContext.startActivity(intent);
+                intent.putExtra("movie", movie.get(i));
+                context.startActivity(intent);
             }
         });
 
@@ -50,7 +50,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ItemViewHold
 
     @Override
     public int getItemCount() {
-        return mMovie.size();
+        return movie.size();
+    }
+
+    public void setMovie(List<Movie> movie){
+        this.movie = movie;
+        notifyDataSetChanged();
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
