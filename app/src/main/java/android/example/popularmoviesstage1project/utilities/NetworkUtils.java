@@ -14,7 +14,7 @@ public class NetworkUtils {
 
     final static String TMDB_BASE_URL = "https://api.themoviedb.org/3/movie";
     final static String PARAMETER_API_KEY = "api_key";
-    final static String API_KEY = "ea5bbf142b5dfbf441434353f2677fbb";
+    final static String API_KEY = "API KEY HERE";
     final static String PARAMETER_LANGUAGE = "language";
     final static String LANGUAGE = "en-US";
     final static String VIDEOS = "videos";
