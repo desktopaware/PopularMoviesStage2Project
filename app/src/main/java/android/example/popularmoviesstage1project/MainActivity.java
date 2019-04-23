@@ -66,13 +66,7 @@ public class MainActivity extends AppCompatActivity {
         connectionError = findViewById(R.id.connection_error);
 
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
-        viewModel.getFavMovies().observe(this, new Observer<List<Movie>>() {
-            @Override
-            public void onChanged(List<Movie> movies) {
-                movieResults.addAll(movies);
-            }
-        });
-
+       
     }
 
     @Override
